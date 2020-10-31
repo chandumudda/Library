@@ -1,0 +1,33 @@
+version: '3.4'
+
+networks: 
+      library:
+services:
+  nosql.data:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  bookapi:
+    image: bookapi
+    build:
+      context: .
+      dockerfile: src/Services/Book/Book.API/Dockerfile
+    depends_on:
+      - nosql.data
+  
+  userapi:
+    image: userapi
+    build:
+      context: .
+      dockerfile: src/Services/User/User.API/Dockerfile
+    depends_on:
+      - nosql.data
+
+  adminapi:
+    image: adminapi
+    build:
+      context: .
+      dockerfile: src/Services/Admin/Admin.API/Dockerfile
+    depends_on:
+      - nosql.data

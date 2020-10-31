@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  bookapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DbConnectionDetails__MongoConnection=mongodb://nosql.data
+      - DbConnectionDetails__MongoDatabaseName=Book
+    ports:
+      - "7100:80"
+
+  userapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DbConnectionDetails__MongoConnection=mongodb://nosql.data
+      - DbConnectionDetails__MongoDatabaseName=User
+    ports:
+      - "7200:80"
+
+  adminapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DbConnectionDetails__MongoConnection=mongodb://nosql.data
+      - DbConnectionDetails__MongoDatabaseName=Admin
+    ports:
+      - "7300:80"
