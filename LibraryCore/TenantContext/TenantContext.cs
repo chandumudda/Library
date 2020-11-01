@@ -23,6 +23,15 @@ namespace LibraryCore.TenantContext
             }
         }
 
+        public string AccessToken
+        {
+            get
+            {
+                ValidateHttpContext();
+                return _httpContext.Request.Headers["Authorization"];
+            }
+        }
+
         private void ValidateHttpContext()
         {
             if (_httpContext == null)

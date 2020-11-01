@@ -24,10 +24,10 @@ services:
     depends_on:
       - nosql.data
 
-  adminapi:
-    image: adminapi
+  adminui:
+    image: adminui
     build:
       context: .
-      dockerfile: src/Services/Admin/Admin.API/Dockerfile
+      dockerfile: src/Services/Admin/Admin.UI/Dockerfile
     depends_on:
       - nosql.data
