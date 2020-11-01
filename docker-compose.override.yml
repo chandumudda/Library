@@ -15,7 +15,7 @@ services:
       - DbConnectionDetails__MongoConnection=mongodb://nosql.data
       - DbConnectionDetails__MongoDatabaseName=User
       - ServiceUrls__AddReview=http://bookapi/api/books/{0}/reviews
-      - ServiceUrls__ListReview=http://bookapi/api/books/{0}/reviews
+      
       - ServiceUrls__History=http://bookapi/api/books/{0}/completed
       - ServiceUrls__ListBooks=http://bookapi/api/books
       - ServiceUrls__GetBookById=http://bookapi/api/books/{0}
@@ -33,5 +33,6 @@ services:
       - ServiceUrls__PostBook=http://bookapi/api/books
       - ServiceUrls__UpdateBook=http://bookapi/api/books/{0}
       - ServiceUrls__DeleteBook=http://bookapi/api/books/{0}
+      - ServiceUrls__ListReview=http://bookapi/api/books/{0}/reviews
     ports:
       - "7120:80"

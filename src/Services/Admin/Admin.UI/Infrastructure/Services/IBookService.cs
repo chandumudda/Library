@@ -12,5 +12,6 @@ namespace Admin.UI.Infrastructure.Services
         Task<Book> GetBookByIdAsync(string id);
         Task<bool> UpdateBookAsync(string id, UpdateBookResource book);
         Task<bool> DeleteBookAsync(string id);
+        Task<IList<BookReview>> ListBookReviewsById(string id);
     }
 }

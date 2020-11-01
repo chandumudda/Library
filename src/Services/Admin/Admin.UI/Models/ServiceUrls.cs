@@ -9,5 +9,6 @@ namespace Admin.UI.Models
         public string PostBook { get; set; }
         public string UpdateBook { get; set; }
         public string DeleteBook { get; set; }
+        public string ListReview { get; set; }
     }
 }

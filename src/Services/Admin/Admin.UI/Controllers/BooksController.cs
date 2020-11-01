@@ -99,5 +99,13 @@ namespace Admin.UI.Controllers
                 return View();
             }
         }
+
+        public ActionResult Review(string id, string bookName)
+        {
+            ViewData["BookName"] = bookName;
+            var reviews = _bookService.ListBookReviewsById(id).Result;
+
+            return View(reviews);
+        }
     }
 }

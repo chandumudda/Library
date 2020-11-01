@@ -70,5 +70,11 @@ namespace Admin.UI.Infrastructure.Services
                     _headers);
             return result.StatusCode == StatusCodes.Status204NoContent;
         }
+
+        public async Task<IList<BookReview>> ListBookReviewsById(string id)
+        {
+            var booksResult = await _libraryClient.ExternalGetApiResultAsync(string.Format(_serviceUrl.Value.ListReview, id), _headers);
+            return booksResult.StatusCode == StatusCodes.Status200OK ? JsonConvert.DeserializeObject<List<BookReview>>(booksResult.StatusMessage) : new List<BookReview>();
+        }
     }
 }

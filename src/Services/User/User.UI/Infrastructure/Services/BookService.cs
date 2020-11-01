@@ -53,11 +53,5 @@ namespace UserUI.Infrastructure.Services
             var booksResult = await _libraryClient.ExternalGetApiResultAsync(string.Format(_serviceUrl.Value.GetBookById, id), _headers);
             return booksResult.StatusCode == StatusCodes.Status200OK ? JsonConvert.DeserializeObject<Book>(booksResult.StatusMessage) : new Book();
         }
-
-        public async Task<IList<BookReview>> ListBookReviewsById(string id)
-        {
-            var booksResult = await _libraryClient.ExternalGetApiResultAsync(_serviceUrl.Value.ListReview, _headers);
-            return booksResult.StatusCode == StatusCodes.Status200OK ? JsonConvert.DeserializeObject<List<BookReview>>(booksResult.StatusMessage) : new List<BookReview>();
-        }
     }
 }

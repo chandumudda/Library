@@ -7,7 +7,6 @@ namespace UserUI.Infrastructure.Services
     public interface IBookService
     {
         Task<bool> AddBookReviewAsync(string id, AddReviewResource resource);
-        Task<IList<BookReview>> ListBookReviewsById(string id);
         Task<IList<Book>> ListBooksAsync();
         Task<Book> GetBookByIdAsync(string id);
     }

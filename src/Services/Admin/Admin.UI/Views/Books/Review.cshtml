@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Admin.UI.Models.BookReview>
+
+@{
+    ViewData["Title"] = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Review</h1>
+
+<h4>@ViewData["BookName"]</h4>
+
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewComment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewedBy)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
