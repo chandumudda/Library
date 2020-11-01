@@ -16,11 +16,11 @@ services:
     depends_on:
       - nosql.data
   
-  userapi:
-    image: userapi
+  userui:
+    image: userui
     build:
       context: .
-      dockerfile: src/Services/User/User.API/Dockerfile
+      dockerfile: src/Services/User/User.UI/Dockerfile
     depends_on:
       - nosql.data
 

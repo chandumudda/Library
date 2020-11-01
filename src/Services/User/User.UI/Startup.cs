@@ -1,17 +1,18 @@
-using Book.API.Infrastructure.Services;
 using LibraryCore.Extensions;
-using LibraryCore.Models;
+using LibraryCore.HttpClients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using OpenIddict.Validation;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
+using UserUI.Infrastructure.Services;
+using UserUI.Models;
 
-namespace Book.API
+namespace UserUI
 {
     public class Startup
     {
@@ -26,13 +27,15 @@ namespace Book.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.Configure<DbConnectionDetails>(Configuration.GetSection("DbConnectionDetails"));
-            services.Configure <List<Models.User>>(Configuration.GetSection("AuthenticationDetails"));
             services.AddConfigurationsCommon();
-            services.AddTransient<IBookService, BookService>();
-            services.AddTransient<IReviewService, ReviewService>();
-            services.AddTransient<IHistoryService, HistoryService>();
+            services.Configure<List<User>>(Configuration.GetSection("AuthenticationDetails"));
+            services.Configure<ServiceUrls>(Configuration.GetSection("ServiceUrls"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<ILibraryClient, LibraryClient>(client =>
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
+            services.AddTransient<IBookService, BookService>();
 
             services.AddDbContext<DbContext>(options =>
             {
@@ -63,11 +66,6 @@ namespace Book.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -79,8 +77,9 @@ namespace Book.API
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Books}/{action=Index}");
             });
         }
     }
 }
+

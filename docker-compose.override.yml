@@ -9,13 +9,18 @@ services:
     ports:
       - "7100:80"
 
-  userapi:
+  userui:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DbConnectionDetails__MongoConnection=mongodb://nosql.data
       - DbConnectionDetails__MongoDatabaseName=User
+      - ServiceUrls__AddReview=http://bookapi/api/books/{0}/reviews
+      - ServiceUrls__ListReview=http://bookapi/api/books/{0}/reviews
+      - ServiceUrls__History=http://bookapi/api/books/{0}/completed
+      - ServiceUrls__ListBooks=http://bookapi/api/books
+      - ServiceUrls__GetBookById=http://bookapi/api/books/{0}
     ports:
-      - "7200:80"
+      - "7110:80"
 
   adminui:
     environment:
@@ -29,4 +34,4 @@ services:
       - ServiceUrls__UpdateBook=http://bookapi/api/books/{0}
       - ServiceUrls__DeleteBook=http://bookapi/api/books/{0}
     ports:
-      - "7300:80"
+      - "7120:80"
