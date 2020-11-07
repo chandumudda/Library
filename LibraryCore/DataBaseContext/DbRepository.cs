@@ -39,7 +39,7 @@ namespace LibraryCore.DataBaseContext
 
             var replaceOptions = new ReplaceOptions()
             {
-                IsUpsert = true
+                IsUpsert = false
             };
             var result =
                 await _mongoDbCollection.ReplaceOneAsync(filter, resource, replaceOptions);

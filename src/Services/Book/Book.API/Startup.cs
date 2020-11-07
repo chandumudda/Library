@@ -67,7 +67,7 @@ namespace Book.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

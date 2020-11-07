@@ -21,13 +21,9 @@ services:
     build:
       context: .
       dockerfile: src/Services/User/User.UI/Dockerfile
-    depends_on:
-      - nosql.data
 
   adminui:
     image: adminui
     build:
       context: .
       dockerfile: src/Services/Admin/Admin.UI/Dockerfile
-    depends_on:
-      - nosql.data

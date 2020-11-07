@@ -12,10 +12,7 @@ services:
   userui:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - DbConnectionDetails__MongoConnection=mongodb://nosql.data
-      - DbConnectionDetails__MongoDatabaseName=User
       - ServiceUrls__AddReview=http://bookapi/api/books/{0}/reviews
-      
       - ServiceUrls__History=http://bookapi/api/books/{0}/completed
       - ServiceUrls__ListBooks=http://bookapi/api/books
       - ServiceUrls__GetBookById=http://bookapi/api/books/{0}
@@ -25,8 +22,6 @@ services:
   adminui:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - DbConnectionDetails__MongoConnection=mongodb://nosql.data
-      - DbConnectionDetails__MongoDatabaseName=Admin
       - ServiceUrls__AuthUrl=http://bookapi/connect/token
       - ServiceUrls__ListBooks=http://bookapi/api/books
       - ServiceUrls__GetBookById=http://bookapi/api/books/{0}
